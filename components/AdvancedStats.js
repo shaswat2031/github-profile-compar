@@ -14,6 +14,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import RepoQualityScore from "./RepoQualityScore";
 
 // Register Chart.js components
 ChartJS.register(

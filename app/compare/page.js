@@ -8,6 +8,12 @@ export default function ComparePage() {
   const [username1, setUsername1] = useState("");
   const [username2, setUsername2] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [validation, setValidation] = useState({
+    user1: { isValid: true, message: "" },
+    user2: { isValid: true, message: "" },
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -38,10 +44,104 @@ export default function ComparePage() {
     updateTheme(newDarkMode);
   };
 
-  const handleSubmit = (e) => {
+  // Validate a GitHub username
+  const validateUsername = (username) => {
+    if (!username) return { isValid: false, message: "Username is required" };
+    if (username.length < 1)
+      return { isValid: false, message: "Username is too short" };
+    if (username.length > 39)
+      return { isValid: false, message: "Username is too long" };
+    if (!/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(username)) {
+      return { isValid: false, message: "Invalid GitHub username format" };
+    }
+    return { isValid: true, message: "" };
+  };
+
+  // Handle real-time validation as user types
+  const handleUser1Change = (e) => {
+    const value = e.target.value;
+    setUsername1(value);
+    if (value) {
+      setValidation((prev) => ({
+        ...prev,
+        user1: validateUsername(value),
+      }));
+    } else {
+      setValidation((prev) => ({
+        ...prev,
+        user1: { isValid: true, message: "" },
+      }));
+    }
+
+    // Clear error if both fields have values
+    if (value && username2) setError("");
+  };
+
+  const handleUser2Change = (e) => {
+    const value = e.target.value;
+    setUsername2(value);
+    if (value) {
+      setValidation((prev) => ({
+        ...prev,
+        user2: validateUsername(value),
+      }));
+    } else {
+      setValidation((prev) => ({
+        ...prev,
+        user2: { isValid: true, message: "" },
+      }));
+    }
+
+    // Clear error if both fields have values
+    if (value && username1) setError("");
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username1 && username2) {
+
+    // Reset error state
+    setError("");
+
+    // Validate both usernames
+    const user1Validation = validateUsername(username1);
+    const user2Validation = validateUsername(username2);
+
+    setValidation({
+      user1: user1Validation,
+      user2: user2Validation,
+    });
+
+    if (!user1Validation.isValid || !user2Validation.isValid) {
+      return;
+    }
+
+    if (username1 === username2) {
+      setError("Please enter two different usernames");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Check if both users exist on GitHub before redirecting
+      const [user1Res, user2Res] = await Promise.all([
+        fetch(`https://api.github.com/users/${username1}`),
+        fetch(`https://api.github.com/users/${username2}`),
+      ]);
+
+      if (!user1Res.ok) {
+        throw new Error(`User "${username1}" not found on GitHub`);
+      }
+
+      if (!user2Res.ok) {
+        throw new Error(`User "${username2}" not found on GitHub`);
+      }
+
+      // If both users exist, redirect to results page
       router.push(`/compare/results?user1=${username1}&user2=${username2}`);
+    } catch (err) {
+      setError(err.message);
+      setIsLoading(false);
     }
   };
 
@@ -162,6 +262,28 @@ export default function ComparePage() {
         </div>
 
         <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 mb-12">
+          {error && (
+            <div className="mb-6 bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded">
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-red-500 mr-3"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="text-red-700 dark:text-red-300 font-medium">
+                  {error}
+                </span>
+              </div>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-3">
@@ -190,12 +312,16 @@ export default function ComparePage() {
                     type="text"
                     id="username1"
                     value={username1}
-                    onChange={(e) => setUsername1(e.target.value)}
-                    className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-12 py-3 sm:text-md border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all"
+                    onChange={handleUser1Change}
+                    className={`focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-12 py-3 sm:text-md border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all ${
+                      !validation.user1.isValid
+                        ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                        : ""
+                    }`}
                     placeholder="e.g., octocat"
                     required
                   />
-                  {username1 && (
+                  {username1 && validation.user1.isValid && (
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                       <svg
                         className="h-5 w-5 text-green-500"
@@ -211,7 +337,28 @@ export default function ComparePage() {
                       </svg>
                     </div>
                   )}
+                  {!validation.user1.isValid && (
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                      <svg
+                        className="h-5 w-5 text-red-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  )}
                 </div>
+                {!validation.user1.isValid && (
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    {validation.user1.message}
+                  </p>
+                )}
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Enter the first GitHub username to compare
                 </p>
@@ -243,12 +390,16 @@ export default function ComparePage() {
                     type="text"
                     id="username2"
                     value={username2}
-                    onChange={(e) => setUsername2(e.target.value)}
-                    className="focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-12 py-3 sm:text-md border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all"
+                    onChange={handleUser2Change}
+                    className={`focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-12 py-3 sm:text-md border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all ${
+                      !validation.user2.isValid
+                        ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                        : ""
+                    }`}
                     placeholder="e.g., defunkt"
                     required
                   />
-                  {username2 && (
+                  {username2 && validation.user2.isValid && (
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                       <svg
                         className="h-5 w-5 text-green-500"
@@ -264,7 +415,28 @@ export default function ComparePage() {
                       </svg>
                     </div>
                   )}
+                  {!validation.user2.isValid && (
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                      <svg
+                        className="h-5 w-5 text-red-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  )}
                 </div>
+                {!validation.user2.isValid && (
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    {validation.user2.message}
+                  </p>
+                )}
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Enter the second GitHub username to compare
                 </p>
@@ -282,24 +454,59 @@ export default function ComparePage() {
             <div>
               <button
                 type="submit"
-                className="w-full inline-flex justify-center items-center py-4 px-6 border border-transparent shadow-lg text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-slate-900 transform hover:scale-105 transition-all duration-200"
+                disabled={isLoading}
+                className={`w-full inline-flex justify-center items-center py-4 px-6 border border-transparent shadow-lg text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-slate-900 transform hover:scale-105 transition-all duration-200 ${
+                  isLoading ? "opacity-80 cursor-not-allowed" : ""
+                }`}
               >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  ></path>
-                </svg>
-                Compare Profiles
+                {isLoading ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Checking Profiles...
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      ></path>
+                    </svg>
+                    Compare Profiles
+                  </>
+                )}
               </button>
+
+              <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-3">
+                We'll verify both profiles before comparison
+              </p>
             </div>
           </form>
         </div>
@@ -362,6 +569,75 @@ export default function ComparePage() {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* New Feature - Tips for Effective Comparisons */}
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-100 dark:border-blue-800 mb-12">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+            <svg
+              className="w-5 h-5 mr-2 text-blue-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Tips for Effective Comparisons
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li className="flex items-start">
+              <svg
+                className="w-4 h-4 text-green-500 mt-0.5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Compare developers within the same domain for more meaningful
+              insights
+            </li>
+            <li className="flex items-start">
+              <svg
+                className="w-4 h-4 text-green-500 mt-0.5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Try comparing well-known open-source contributors to benchmark
+              your own profile
+            </li>
+            <li className="flex items-start">
+              <svg
+                className="w-4 h-4 text-green-500 mt-0.5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Look beyond commit counts - consider contribution quality and
+              project impact
+            </li>
+          </ul>
         </div>
 
         <div className="text-center mt-16 text-gray-500 dark:text-gray-400 text-sm">
