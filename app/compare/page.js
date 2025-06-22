@@ -230,7 +230,7 @@ export default function ComparePage() {
 
           <div className="flex items-center">
             <a
-              href="https://github.com"
+              href="https://github.com/shaswat2031/github-profile-compar"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
