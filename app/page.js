@@ -243,30 +243,11 @@ export default function Home() {
               and contribution patterns.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => setShowCompareForm(true)}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-8 rounded-md transition duration-300 font-medium text-lg shadow-lg hover:shadow-xl flex items-center justify-center group"
-              >
-                Start Comparing
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-
               <Link
                 href="/compare"
                 className="bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-white py-3 px-8 rounded-md transition duration-300 font-medium text-lg border border-gray-300 dark:border-gray-600 shadow-sm flex items-center justify-center"
               >
-                Learn More
+                Start Comparing
               </Link>
             </div>
           </div>
@@ -706,148 +687,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Comparison Form - Only shown after clicking Start Comparing button */}
-        {showCompareForm && (
-          <div className="w-full bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border-2 border-blue-200 dark:border-blue-900 relative">
-            <button
-              onClick={() => setShowCompareForm(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-              aria-label="Close form"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                Compare Developer Profiles
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
-                Enter GitHub usernames to start the comparison
-              </p>
-            </div>
-
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    htmlFor="username1"
-                  >
-                    First GitHub Username
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg
-                        className="h-5 w-5 text-gray-400 dark:text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <input
-                      type="text"
-                      id="username1"
-                      value={username1}
-                      onChange={(e) => setUsername1(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="e.g., octocat"
-                      required
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 ml-1">
-                    First developer to compare
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    htmlFor="username2"
-                  >
-                    Second GitHub Username
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg
-                        className="h-5 w-5 text-gray-400 dark:text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <input
-                      type="text"
-                      id="username2"
-                      value={username2}
-                      onChange={(e) => setUsername2(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="e.g., defunkt"
-                      required
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 ml-1">
-                    Second developer to compare
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center space-x-2 text-gray-500 dark:text-gray-400">
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-                <span className="flex-shrink mx-4 font-medium">VS</span>
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 rounded-md transition duration-300 font-medium text-lg flex items-center justify-center"
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  ></path>
-                </svg>
-                Compare Profiles
-              </button>
-
-              <div className="text-sm text-center text-gray-500 dark:text-gray-400">
-                <p>Profiles are compared using GitHub's public API</p>
-              </div>
-            </form>
-          </div>
-        )}
-
         {/* About Section */}
         <div className="bg-blue-50 dark:bg-blue-900/30 p-8 rounded-lg shadow-md w-full">
           <h3 className="text-xl font-semibold mb-3">How It Works</h3>
@@ -910,58 +749,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {!showCompareForm && (
-          <button
-            onClick={() => setShowCompareForm(true)}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-10 rounded-full transition duration-300 font-medium text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center"
-          >
-            Start Comparing Now
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        )}
       </main>
 
       <footer className="w-full mt-12 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <div className="py-4 border-t border-gray-200 dark:border-gray-800">
-            <div className="flex flex-wrap justify-center space-x-6 mb-4">
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
-              >
-                Contact
-              </a>
-            </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Powered by GitHub API • Not affiliated with GitHub, Inc.
             </p>

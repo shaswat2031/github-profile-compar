@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,34 @@ ChartJS.register(
   ArcElement
 );
 
-export default function ComparisonResults() {
+// Loading component to show while data is fetching
+function LoadingState() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500 mx-auto"></div>
+        <h3 className="mt-4 text-xl font-medium text-gray-900 dark:text-gray-100">
+          Loading profiles...
+        </h3>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">
+          This may take a few moments
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// The main component wrapper with Suspense
+export default function ComparisonResultsWrapper() {
+  return (
+    <Suspense fallback={<LoadingState />}>
+      <ComparisonResults />
+    </Suspense>
+  );
+}
+
+// Actual implementation moved to inner component
+function ComparisonResults() {
   const searchParams = useSearchParams();
   const user1 = searchParams.get("user1");
   const user2 = searchParams.get("user2");
