@@ -214,7 +214,7 @@ export default function Home() {
             </li>
             <li>
               <a
-                href="https://github.com"
+                href="https://github.com/shaswat2031/github-profile-compar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 relative group"
