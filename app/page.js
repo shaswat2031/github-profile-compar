@@ -193,7 +193,7 @@ export default function Home() {
           comparisons
         </p>
         <nav className="mt-6">
-          <ul className="flex justify-center space-x-6">
+          <ul className="flex flex-wrap justify-center space-x-6">
             <li>
               <Link
                 href="/"
@@ -209,6 +209,33 @@ export default function Home() {
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 relative group"
               >
                 Compare
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/about"
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 relative group"
+              >
+                About Us
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 relative group"
+              >
+                Contact
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/privacy"
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 relative group"
+              >
+                Privacy Policy
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
             </li>
