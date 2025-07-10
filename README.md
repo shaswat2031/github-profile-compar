@@ -1,6 +1,3 @@
-Here is your **complete, single-file `README.md`**—fully self-contained, cleaned up, and ready to use:
-
-````md
 <p align="center">
   <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
@@ -55,7 +52,6 @@ Whether you're hiring, collaborating, or just curious, this app provides a clean
 
 ## 📁 Project Structure
 
-```bash
 github-profile-compare/
 ├── README.md
 ├── app/
@@ -81,7 +77,6 @@ github-profile-compare/
 ├── next.config.js
 ├── jsconfig.json
 └── package-lock.json
-````
 
 ---
 
@@ -89,53 +84,47 @@ github-profile-compare/
 
 ### ☑️ Prerequisites
 
-* Node.js (v18+)
-* npm (v9+)
+- Node.js (v18+)
+- npm (v9+)
 
 ### ⚙️ Installation
 
-```bash
 git clone https://github.com/shaswat2031/github-profile-compare
 cd github-profile-compare
 npm install
-```
 
 ### ▶️ Running the App
 
-```bash
 npm run dev
-```
 
-Visit `http://localhost:3000` in your browser.
+Visit http://localhost:3000 in your browser.
 
 ### 🧪 Testing (Optional)
 
-```bash
 npm test
-```
 
 ---
 
 ## 📌 Project Roadmap
 
-* [x] Profile Comparison UI
-* [x] Dark Mode
-* [x] Basic Scoring System
-* [ ] GitHub OAuth Login
-* [ ] Export to PDF
-* [ ] Org-level Comparison
+- [x] Profile Comparison UI
+- [x] Dark Mode
+- [x] Basic Scoring System
+- [ ] GitHub OAuth Login
+- [ ] Export to PDF
+- [ ] Org-level Comparison
 
 ---
 
 ## 🔰 Contributing
 
-1. **Fork** the project
-2. **Clone** your fork
-3. **Create** a feature branch
-4. **Commit** your changes
-5. **Push** and submit a **Pull Request**
+1. Fork the project  
+2. Clone your fork  
+3. Create a feature branch  
+4. Commit your changes  
+5. Push and submit a Pull Request  
 
-📬 Issues and suggestions welcome via [GitHub Issues](https://github.com/shaswat2031/github-profile-compare/issues)
+📬 Issues and suggestions welcome via GitHub Issues: https://github.com/shaswat2031/github-profile-compare/issues
 
 <details>
 <summary>🎉 Contributors</summary>
@@ -151,26 +140,15 @@ npm test
 
 ## 🎗 License
 
-This project is licensed under the **MIT License**.
-See the [LICENSE](./LICENSE) file for full details.
+This project is licensed under the MIT License.  
+See the LICENSE file for full details.
 
 ---
 
 ## 🙌 Acknowledgments
 
-* 🧑‍💻 [GitHub REST API](https://docs.github.com/en/rest)
-* 🎨 [Skillicons.dev](https://skillicons.dev)
-* ⚛️ [Next.js Docs](https://nextjs.org/docs)
-* 💅 [Tailwind CSS](https://tailwindcss.com)
-* ✨ Inspired by GitHub Readme Stats and GitHub Wrapped
-
-```
-
----
-
-Let me know if you'd like:
-- A matching `LICENSE` file
-- A version with live demo link
-- Deployment instructions (e.g., for Vercel or Netlify)  
-I'm happy to include any of those.
-```
+- 🧑‍💻 GitHub REST API: https://docs.github.com/en/rest  
+- 🎨 Skillicons.dev: https://skillicons.dev  
+- ⚛️ Next.js Docs: https://nextjs.org/docs  
+- 💅 Tailwind CSS: https://tailwindcss.com  
+- ✨ Inspired by GitHub Readme Stats and GitHub Wrapped
