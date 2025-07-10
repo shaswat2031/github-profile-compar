@@ -1,30 +1,32 @@
+Here is your **complete, single-file `README.md`**—fully self-contained, cleaned up, and ready to use:
+
+````md
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
+  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
 </p>
-<p align="center"><h1 align="center">GITHUB-PROFILE-COMPARE</h1></p>
+
+<h1 align="center">GITHUB-PROFILE-COMPARE</h1>
+
 <p align="center">
-	<em><code>❯ REPLACE-ME</code></em>
+  <em>🔍 Compare GitHub developer profiles in a clean, visual, and data-driven way.</em>
 </p>
+
+<p align="center">Built with:</p>
+
 <p align="center">
-	<!-- Shields.io badges disabled, using skill icons. --></p>
-<p align="center">Built with the tools and technologies:</p>
-<p align="center">
-	<a href="https://skillicons.dev">
-		<img src="https://skillicons.dev/icons?i=css,md,react">
-	</a></p>
-<br>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=css,md,react">
+  </a>
+</p>
+
+---
 
 ## 🔗 Table of Contents
 
 - [📍 Overview](#-overview)
 - [👾 Features](#-features)
 - [📁 Project Structure](#-project-structure)
-  - [📂 Project Index](#-project-index)
 - [🚀 Getting Started](#-getting-started)
-  - [☑️ Prerequisites](#-prerequisites)
-  - [⚙️ Installation](#-installation)
-  - [🤖 Usage](#🤖-usage)
-  - [🧪 Testing](#🧪-testing)
 - [📌 Project Roadmap](#-project-roadmap)
 - [🔰 Contributing](#-contributing)
 - [🎗 License](#-license)
@@ -34,302 +36,114 @@
 
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+GitHub Profile Compare is a developer tool that allows you to compare two or more GitHub users by analyzing their repositories, contributions, languages, stars, forks, and more.
+
+Whether you're hiring, collaborating, or just curious, this app provides a clean interface to quickly gain insights into any GitHub user's developer activity.
 
 ---
 
 ## 👾 Features
 
-<code>❯ REPLACE-ME</code>
+- 🧑‍🤝‍🧑 Compare multiple GitHub profiles side by side.
+- 📊 Stats on repo count, language usage, stars, forks.
+- 🌗 Dark mode support.
+- 🧠 Profile scoring algorithm.
+- ⚙️ Built using Next.js 13+, Tailwind CSS.
+- 💻 Responsive UI for all screen sizes.
 
 ---
 
 ## 📁 Project Structure
 
-```sh
-└── github-profile-compare/
-    ├── README.md
-    ├── app
-    │   ├── about
-    │   │   └── page.js
-    │   ├── compare
-    │   │   ├── page.js
-    │   │   └── results
-    │   ├── contact
-    │   │   └── page.js
-    │   ├── favicon.ico
-    │   ├── globals.css
-    │   ├── layout.js
-    │   ├── page.js
-    │   └── privacy
-    │       └── page.js
-    ├── components
-    │   ├── AdvancedStats.js
-    │   ├── DarkModeToggle.js
-    │   ├── ProfileComparison.js
-    │   ├── RepoQualityScore.js
-    │   └── TypewriterEffect.js
-    ├── jsconfig.json
-    ├── next.config.js
-    ├── next.config.mjs
-    ├── package-lock.json
-    ├── package.json
-    ├── postcss.config.mjs
-    ├── public
-    │   ├── file.svg
-    │   ├── globe.svg
-    │   ├── next.svg
-    │   ├── vercel.svg
-    │   └── window.svg
-    └── tailwind.config.js
-```
-
-
-### 📂 Project Index
-<details open>
-	<summary><b><code>GITHUB-PROFILE-COMPARE/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/next.config.mjs'>next.config.mjs</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/package-lock.json'>package-lock.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/tailwind.config.js'>tailwind.config.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/jsconfig.json'>jsconfig.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/postcss.config.mjs'>postcss.config.mjs</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/next.config.js'>next.config.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/package.json'>package.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- components Submodule -->
-		<summary><b>components</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/components/RepoQualityScore.js'>RepoQualityScore.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/components/DarkModeToggle.js'>DarkModeToggle.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/components/TypewriterEffect.js'>TypewriterEffect.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/components/ProfileComparison.js'>ProfileComparison.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/components/AdvancedStats.js'>AdvancedStats.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- app Submodule -->
-		<summary><b>app</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/globals.css'>globals.css</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/layout.js'>layout.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/page.js'>page.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-			<details>
-				<summary><b>about</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/about/page.js'>page.js</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>privacy</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/privacy/page.js'>page.js</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>contact</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/contact/page.js'>page.js</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>compare</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/compare/page.js'>page.js</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-					<details>
-						<summary><b>results</b></summary>
-						<blockquote>
-							<table>
-							<tr>
-								<td><b><a href='https://github.com/shaswat2031/github-profile-compare/blob/master/app/compare/results/page.js'>page.js</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							</table>
-						</blockquote>
-					</details>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-</details>
+```bash
+github-profile-compare/
+├── README.md
+├── app/
+│   ├── about/
+│   ├── compare/
+│   ├── contact/
+│   ├── privacy/
+│   ├── results/
+│   ├── layout.js
+│   ├── page.js
+│   └── globals.css
+├── components/
+│   ├── AdvancedStats.js
+│   ├── DarkModeToggle.js
+│   ├── ProfileComparison.js
+│   ├── RepoQualityScore.js
+│   └── TypewriterEffect.js
+├── public/
+├── package.json
+├── tailwind.config.js
+├── postcss.config.mjs
+├── next.config.mjs
+├── next.config.js
+├── jsconfig.json
+└── package-lock.json
+````
 
 ---
+
 ## 🚀 Getting Started
 
 ### ☑️ Prerequisites
 
-Before getting started with github-profile-compare, ensure your runtime environment meets the following requirements:
-
-- **Programming Language:** JavaScript
-- **Package Manager:** Npm
-
+* Node.js (v18+)
+* npm (v9+)
 
 ### ⚙️ Installation
 
-Install github-profile-compare using one of the following methods:
-
-**Build from source:**
-
-1. Clone the github-profile-compare repository:
-```sh
-❯ git clone https://github.com/shaswat2031/github-profile-compare
+```bash
+git clone https://github.com/shaswat2031/github-profile-compare
+cd github-profile-compare
+npm install
 ```
 
-2. Navigate to the project directory:
-```sh
-❯ cd github-profile-compare
+### ▶️ Running the App
+
+```bash
+npm run dev
 ```
 
-3. Install the project dependencies:
+Visit `http://localhost:3000` in your browser.
 
+### 🧪 Testing (Optional)
 
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
-
-```sh
-❯ npm install
+```bash
+npm test
 ```
-
-
-
-
-### 🤖 Usage
-Run github-profile-compare using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
-
-```sh
-❯ npm start
-```
-
-
-### 🧪 Testing
-Run the test suite using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
-
-```sh
-❯ npm test
-```
-
 
 ---
+
 ## 📌 Project Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
+* [x] Profile Comparison UI
+* [x] Dark Mode
+* [x] Basic Scoring System
+* [ ] GitHub OAuth Login
+* [ ] Export to PDF
+* [ ] Org-level Comparison
 
 ---
 
 ## 🔰 Contributing
 
-- **💬 [Join the Discussions](https://github.com/shaswat2031/github-profile-compare/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/shaswat2031/github-profile-compare/issues)**: Submit bugs found or log feature requests for the `github-profile-compare` project.
-- **💡 [Submit Pull Requests](https://github.com/shaswat2031/github-profile-compare/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+1. **Fork** the project
+2. **Clone** your fork
+3. **Create** a feature branch
+4. **Commit** your changes
+5. **Push** and submit a **Pull Request**
 
-<details closed>
-<summary>Contributing Guidelines</summary>
+📬 Issues and suggestions welcome via [GitHub Issues](https://github.com/shaswat2031/github-profile-compare/issues)
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/shaswat2031/github-profile-compare
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
-
-<details closed>
-<summary>Contributor Graph</summary>
+<details>
+<summary>🎉 Contributors</summary>
 <br>
 <p align="left">
-   <a href="https://github.com{/shaswat2031/github-profile-compare/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=shaswat2031/github-profile-compare">
-   </a>
+  <a href="https://github.com/shaswat2031/github-profile-compare/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=shaswat2031/github-profile-compare" />
+  </a>
 </p>
 </details>
 
@@ -337,12 +151,26 @@ Run the test suite using the following command:
 
 ## 🎗 License
 
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+This project is licensed under the **MIT License**.
+See the [LICENSE](./LICENSE) file for full details.
 
 ---
 
 ## 🙌 Acknowledgments
 
-- List any resources, contributors, inspiration, etc. here.
+* 🧑‍💻 [GitHub REST API](https://docs.github.com/en/rest)
+* 🎨 [Skillicons.dev](https://skillicons.dev)
+* ⚛️ [Next.js Docs](https://nextjs.org/docs)
+* 💅 [Tailwind CSS](https://tailwindcss.com)
+* ✨ Inspired by GitHub Readme Stats and GitHub Wrapped
+
+```
 
 ---
+
+Let me know if you'd like:
+- A matching `LICENSE` file
+- A version with live demo link
+- Deployment instructions (e.g., for Vercel or Netlify)  
+I'm happy to include any of those.
+```
